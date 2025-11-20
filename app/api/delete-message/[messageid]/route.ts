@@ -7,9 +7,9 @@ import mongoose from "mongoose";
 import { NextRequest } from "next/server";
 
 export async function DELETE(request:NextRequest,
-       context: { params: { messageid: string } }
+       context: { params:Promise<{ messageid: string }> }
 ){
-    const {messageid} = context.params
+    const {messageid} = await context.params
     await dbConnect()
 const session=  await getServerSession(authOptions)
 const user:User= session?.user as User
