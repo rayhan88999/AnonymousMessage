@@ -1,4 +1,4 @@
-import {resend} from "../lib/resend"
+import {getResend,} from "../lib/resend"
 import VerificationEmail from "@/emails/VerificationEmail"
 import { ApiResponse } from "@/types/ApiResponse"
 
@@ -9,6 +9,7 @@ export async function sendVerificationEmail(
 
 ):Promise<ApiResponse>{
     try {
+        const resend= getResend()
         await resend.emails.send({
   from: 'onboarding@resend.dev',
   to: email,
