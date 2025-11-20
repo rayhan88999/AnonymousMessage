@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
 
-const page = () => {
+const Page = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [isSuggestLoading, setIsSuggestLoading] = useState(false)
     const [questions, setQuestions] = useState<string[]>([])
@@ -137,4 +137,4 @@ const username = params.username
   )
 }
 
-export default page
+export default Page
