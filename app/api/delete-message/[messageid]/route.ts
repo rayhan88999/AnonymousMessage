@@ -4,9 +4,12 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import { User } from "next-auth";
 import mongoose from "mongoose";
+import { NextRequest } from "next/server";
 
-export async function DELETE(request:Request, {params}:{params:{messageid:string}}){
-    const messageId= params.messageid
+export async function DELETE(request:NextRequest,
+       context: { params: { messageid: string } }
+){
+    const {messageid} = context.params
     await dbConnect()
 const session=  await getServerSession(authOptions)
 const user:User= session?.user as User
@@ -23,7 +26,7 @@ if (!session || !session.user) {
  try {
     const updateResult= await UserModel.updateOne(
         {_id:user._id},
-        {$pull:{messages:{_id:messageId}}}
+        {$pull:{messages:{_id:messageid}}}
     )
     if (updateResult.modifiedCount==0) {
           return Response.json(
