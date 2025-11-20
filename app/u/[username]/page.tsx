@@ -55,8 +55,8 @@ const username = params.username
             username
             
         })
-            console.log("Response status:", response.status) // Add this
-    console.log("Response data:", response.data) // Add this
+            console.log("Response status:", response.status) 
+    console.log("Response data:", response.data) 
         if (response.status == 200) {
                   toast.success("message sent successfully")
         form.reset({...form.getValues(),content:""})
